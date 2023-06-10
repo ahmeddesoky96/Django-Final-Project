@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_profile.apps.UserProfileConfig',
     'project.apps.ProjectConfig',
-    
+    'homePage.apps.HomepageConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'crowd_funding.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,11 +82,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'crowdfund',
-        'USER':'postgres',
-        'PASSWORD':'Mo#Selim',
-        'HOST':'127.0.0.1',
-        'PORT':5432
+        'NAME': 'crowdfund',
+        'USER': 'postgres',
+        'PASSWORD': '2020',
+        'HOST': '127.0.0.1',
+        'PORT': 5432
     }
 }
 
