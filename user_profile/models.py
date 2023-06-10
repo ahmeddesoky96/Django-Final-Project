@@ -4,10 +4,11 @@ from django.core.validators import RegexValidator
 
 # Create your models here.
 class MyUser(models.Model):
-    # id=models.AutoField(primary_key=True,db_column='id')
+
+    id=models.AutoField(primary_key=True)
     first_name=models.CharField(max_length=20)
     last_name=models.CharField(max_length=20)
-    email=models.EmailField(max_length=75,primary_key=True,db_column='email',
+    email=models.EmailField(max_length=75,db_column='email',
         validators=[
             RegexValidator(
                 r'[^@]+@[^@]+\.[^@]+',
