@@ -13,7 +13,39 @@
     </div>
     <br><br><br><br>
     <div class="container bg-success">
-        <h1>this is header</h1>
+        <h1>the top rated projects</h1>
+        <table width="100%" border="1" class="table">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Details</th>
+                <th>Category</th>
+                <th>Owner</th>
+                <th>Target</th>
+                <th>Rate</th>
+                <th>Display</th>
+            </tr>
+            {%for project in top_rated_projects%}
+                <tr>
+                    <td>{{project.id}}</td>
+                    <td>{{project.title}}</td>
+                    <td>{{project.details}}</td>
+                    <td>{{project.category}}</td>
+                    <td>{{project.owner_id}}</td>
+                    <td>{{project.target}}</td>
+                    <td>{{project.total_rate}}</td>
+                    <td>
+                        <a
+                          href="#"
+                          class="btn btn-info"
+                        >
+                          View</a
+                        >
+                      </td>
+                    
+                </tr>
+            {%endfor%}
+        </table>
     </div>
     <br><br><br>
     <div class="container bg-info">
