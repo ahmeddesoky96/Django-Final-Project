@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {%for p in p%}
+        {{p.id}}
+            {%for d in d%}
+                {%if p.id == d.id%}
+                    {{d.user_id}}
+                    {{d.donate_amount}}
+                {%endif%}
+            {%endfor%}
+        {{p.title}}
+        {{p.details}}
+        {%for c == c%}
+            {%if p.id == c.id%}
+                {{c.user_id}}
+                {{c.comment_body}}
+            {%endif%}
+        {%endfor%}
+    {%endfor%}
+</body>
+</html>
