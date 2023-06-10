@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Category)
-admin.site.register(Project)
+admin.site.register(Projects)
 admin.site.register(Donation)
 admin.site.register(Comment)
 admin.site.register(Rating)
