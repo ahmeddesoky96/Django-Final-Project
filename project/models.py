@@ -3,8 +3,8 @@ from user_profile.models import *
 from django.db.models import Avg
 
 # Create your models here.
-from django.db import models
-from django.contrib.auth.models import User
+# from django.db import models
+# from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
@@ -17,8 +17,9 @@ class Project(models.Model):
     target = models.IntegerField()
     start_date = models.DateField()
     end_date = models.DateField()
-    owener_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    owener_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     total_rate = models.DecimalField(max_digits=3, decimal_places=2, default=0)
+    repor_count = models.IntegerField()
 
     def calculate_total_rating(self):
         ratings = Rating.objects.filter(project=self)
@@ -38,25 +39,25 @@ class Image(models.Model):
 
 class Donation(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     donate_amount = models.IntegerField()
 
 class Comment(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     comment_body = models.TextField()
-    report_comment = models.CharField()
-    user_report = models.CharField()
+    report_comment = models.BooleanField()
+    # user_report = models.CharField()
 
-class Report(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
-    report_body = models.TextField()
-    user_report = models.CharField()
+# class Report(models.Model):
+#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
+#     user_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+#     # report_body = models.TextField()
+#     # user_report = models.CharField()
 
 class Rating(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    user_email = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     rate = models.IntegerField()
     
     def save(self, *args, **kwargs):
