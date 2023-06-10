@@ -20,7 +20,7 @@ class Projects(models.Model):
     end_date = models.DateField()
     owner_id = models.ForeignKey(MyUser, on_delete=models.CASCADE ,null=True)  #### owner_email
     total_rate = models.DecimalField(max_digits=3, decimal_places=2,default=0)
-    repor_count = models.IntegerField() ###  report_count
+    report_count = models.IntegerField() ###  report_count
 
     def calculate_total_rating(self):
         ratings = Rating.objects.filter(project=self)

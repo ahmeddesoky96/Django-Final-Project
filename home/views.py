@@ -7,5 +7,11 @@ from user_profile.models import *
 def myHome(req):
     return render(req,'home.html')
 
-def getCategory(req,str):
-    return render(req,'category.html')
+def getCategory(req,cate):
+        context={}
+        req.session['categoryN']=cate
+        context['category']=Category.objects.filter(name=cate)
+        context['projects']=Projects.objects.filter(category=cate)
+        
+        return render(req,'category.html',context)
+    

@@ -1,66 +1,55 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'bootstrap-5.3.0-dist/css/bootstrap.min.css' %}">
-    <title>Document</title>
-</head>
-<body>
-  <div class="container my-4 bg-dark p-4 " style="color:white;border-radius: 10px;">
-    <h1>Create Project</h1> 
-    <form method="post">
+{%extends 'parent.html' %}
+
+{%block content%}
+<div class="container my-4 bg-dark p-4 " style="color:white;border-radius: 10px;">
+  <h1>Create Project</h1> 
+  <form method="post">
 <!-- id,title,details,category,target,start_date,end_date,owener_email,total_rate,repor_count -->
-        <!-- Title -->
-        {%csrf_token%}
-        <div class="mb-3">
-          <label for="projectTitle" class="form-label">Project Title</label>
-          <input type="text" name="title" class="form-control" id="projectTitle" aria-describedby="emailHelp">
-        </div>
+      <!-- Title -->
+      {%csrf_token%}
+      <div class="mb-3">
+        <label for="projectTitle" class="form-label">Project Title</label>
+        <input type="text" name="title" class="form-control" id="projectTitle" aria-describedby="emailHelp">
+      </div>
 
-        <!-- Details -->
-        <div class="mb-3">
-          <label for="Details" class="form-label">Details</label>
-          <input type="text" name="details" class="form-control" id="Details" aria-describedby="emailHelp">
-        </div>
+      <!-- Details -->
+      <div class="mb-3">
+        <label for="Details" class="form-label">Details</label>
+        <input type="text" name="details" class="form-control" id="Details" aria-describedby="emailHelp">
+      </div>
 
-        <!-- Category -->
-        <!-- <div class="mb-3">
-          <label for="Category" class="form-label">Category</label>
-          <input type="text" name="category" class="form-control" id="Category" aria-describedby="emailHelp">
-        </div> -->
+      <!-- Category -->
+      <!-- <div class="mb-3">
+        <label for="Category" class="form-label">Category</label>
+        <input type="text" name="category" class="form-control" id="Category" aria-describedby="emailHelp">
+      </div> -->
 
-        <!-- Target -->
-        <div class="mb-3">
-          <label for="Target" class="form-label">Target</label>
-          <input type="number" name="target" class="form-control" id="Target" aria-describedby="emailHelp">
-        </div>
+      <!-- Target -->
+      <div class="mb-3">
+        <label for="Target" class="form-label">Target</label>
+        <input type="number" name="target" class="form-control" id="Target" aria-describedby="emailHelp">
+      </div>
 
-        <!-- Start_date -->
-        <div class="mb-3">
-          <label for="Start_date" class="form-label">Start Date</label>
-          <input type="date" name="start_date" class="form-control" id="Start_date" aria-describedby="emailHelp">
-        </div>
+      <!-- Start_date -->
+      <div class="mb-3">
+        <label for="Start_date" class="form-label">Start Date</label>
+        <input type="date" name="start_date" class="form-control" id="Start_date" aria-describedby="emailHelp">
+      </div>
 
-        <!-- End_date -->
-        <div class="mb-3">
-          <label for="End_date" class="form-label">End Date</label>
-          <input type="date" name="end_date" class="form-control" id="End_date" aria-describedby="emailHelp">
-        </div>
+      <!-- End_date -->
+      <div class="mb-3">
+        <label for="End_date" class="form-label">End Date</label>
+        <input type="date" name="end_date" class="form-control" id="End_date" aria-describedby="emailHelp">
+      </div>
 
-        <!-- Total_rate
-        <div class="mb-3">
-          <label for="Total_rate" class="form-label">Total Rate</label>
-          <input type="text" name="total_rate" class="form-control" id="Total_rate" aria-describedby="emailHelp">
-        </div> -->
-        
-        
-        <button type="submit" class="btn btn-primary">Create</button>
-      </form>
-    </div>
-
-
-    <script src="{% static 'bootstrap-5.3.0-dist/js/bootstrap.min.js' %}"></script>
-</body>
-</html>
+      <!-- Total_rate
+      <div class="mb-3">
+        <label for="Total_rate" class="form-label">Total Rate</label>
+        <input type="text" name="total_rate" class="form-control" id="Total_rate" aria-describedby="emailHelp">
+      </div> -->
+      
+      
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+{%endblock%}
