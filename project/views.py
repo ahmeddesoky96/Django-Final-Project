@@ -22,3 +22,15 @@ def createProject(req):
 
         
 
+def searchBar(request):
+    if 'q' in request.GET:
+        q = request.GET['q']
+        data = Tag.objects.filter(tag_name__icontains=q)
+        # multiple_q = Q(Q(first_name__icontains=q) | Q(last_name__icontains=q))
+        # data = Data.objects.filter(multiple_q)
+    else:
+        data = Data.objects.all()
+    context = {
+        'data': data
+    }
+    return render(request, 'home.html', context)

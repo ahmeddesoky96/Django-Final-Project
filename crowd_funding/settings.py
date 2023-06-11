@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'user_profile.apps.UserProfileConfig',
     'project.apps.ProjectConfig',
     'home.apps.HomeConfig'
-    
-    
+
+
 ]
 
 MIDDLEWARE = [
@@ -83,11 +83,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'crowdfund',
-        'USER':'postgres',
-        'PASSWORD':'123',
-        'HOST':'127.0.0.1',
-        'PORT':5432
+        'NAME': 'crowdfund',
+        'USER': 'postgres',
+        'PASSWORD': '2020',
+        'HOST': '127.0.0.1',
+        'PORT': 5432
     }
 }
 
