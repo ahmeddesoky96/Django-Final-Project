@@ -4,6 +4,6 @@ from .views import *
 
 urlpatterns = [
     
-    path('', listProject,name='listproject'),
+    path('', get_projects_with_donations,name='listproject'),
     
 ]
