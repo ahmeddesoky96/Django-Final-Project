@@ -16,7 +16,7 @@
             <td>target</td>
             <td>reports count</td>
         </tr>
-            {%for j in p%}
+            {%for j in project_id%}
               <tr>
                 <td>{{j.title}}</td>
                 <td>{{ sumlist[j.id] }}</td>
@@ -31,13 +31,13 @@
             <td>user_id</td>
             <td>donate</td>
         </tr>
-        {%for p in p%}
+        {%for p in project_id%}
             <tr>
-                <td>{{p.title}}</td>
-                {%for d in d%}
-                    {%if p.id == d.id%}
-                        <td>{{d.user_id}}</td>
-                        <td>{{d.donate}}</td>
+                <td>{{project_id.title}}</td>
+                {%for d in donation_id%}
+                    {%if project_id.id == donation_id.id%}
+                        <td>{{donation_id.user_id}}</td>
+                        <td>{{donation_id.donate}}</td>
             </tr>
     </table>
     <!-- {%for p in p%}
