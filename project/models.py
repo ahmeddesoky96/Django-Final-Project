@@ -10,6 +10,8 @@ from datetime import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=50, primary_key=True ,default="helpDesoky")
+    def __str__(self) -> str:
+        return self.name
 
 class Projects(models.Model):
     #id,title,details,category,target,start_date,end_date,owener_email,total_rate,repor_count

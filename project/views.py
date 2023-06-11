@@ -22,3 +22,17 @@ def createProject(req):
 
         
 
+
+def get_similar_project(req, id):
+    # Get the tags of the project with the given ID.
+    proj_tags = Tag.objects.filter(project=id).values_list('tag_name', flat=True)
+
+    # Get other projects that have tags similar to the current project.
+    sim_projs = Tag.objects.filter(tag_name__in=proj_tags).exclude(project=id).values_list('project', flat=True)
+
+    # Get four random projects from the similar projects.
+    random_proj = Projects.objects.filter(id__in=sim_projs).order_by('?')[:4]
+
+    context = {}
+    context['random_proj'] = random_proj
+    return render(req, 'display_proj.html', context)
