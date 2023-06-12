@@ -1,6 +1,6 @@
 from django.db import models
 from user_profile.models import *
-from django.db.models import Avg
+from django.db.models import Avg,Sum
 
 # Create your models here.
 # from django.db import models
@@ -20,7 +20,7 @@ class Projects(models.Model):
     end_date = models.DateField()
     owner_id = models.ForeignKey(MyUser, on_delete=models.CASCADE ,null=True)  #### owner_email
     total_rate = models.DecimalField(max_digits=3, decimal_places=2,default=0)
-    report_count = models.IntegerField() ###  report_count
+    report_count = models.IntegerField(default=0) ###  report_count
 
     def calculate_total_rating(self):
         ratings = Rating.objects.filter(project=self)
@@ -29,6 +29,13 @@ class Projects(models.Model):
         else:
             self.total_rate = 0
 
+    def calculate_total_report(self):
+        reports = Report.objects.filter(project=self)
+        if reports.exists():
+            self.report_count = reports.aggregate(Sum('report_state'))['report_state__sum']
+        else:
+            self.report_count = 0
+
 
 class Tag(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
@@ -36,7 +43,7 @@ class Tag(models.Model):
 
 class Image(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
-    picture = models.TextField()
+    picture = models.ImageField()
 
 class Donation(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
@@ -47,14 +54,18 @@ class Comment(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     user_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     comment_body = models.TextField()
-    report_comment = models.BooleanField()
+    report_comment = models.BooleanField(default=False)
     # user_report = models.CharField()
 
-# class Report(models.Model):
-#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-#     user_email = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-#     # report_body = models.TextField()
-#     # user_report = models.CharField()
+class Report(models.Model):
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    report_state=models.IntegerField()
+
+    def save(self, *args, **kwargs):
+        super(Report, self).save(*args, **kwargs)
+        self.project.calculate_total_report()
+        self.project.save()
 
 class Rating(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)

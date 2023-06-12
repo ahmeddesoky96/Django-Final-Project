@@ -12,9 +12,9 @@
 
 <div class="container bg-success">
     <h1>Pick Category</h1>
-    <a href="{% url 'category' 'help' %}" class="btn btn-primary">help category</a>
-    <a href="{% url 'category' 'giveMoney' %}" class="btn btn-primary">giveMoney category</a>
-    <a href="{% url 'category' 'MoneyForDesoky' %}" class="btn btn-primary">MoneyForDesoky category</a>
+    {%for category in allCategory%}
+        <a href="{% url 'category' category.name %}" class="btn btn-primary">{{category.name}} category</a>         
+    {%endfor%}
     
 </div>
 

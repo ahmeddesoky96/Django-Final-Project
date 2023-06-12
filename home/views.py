@@ -5,7 +5,10 @@ from user_profile.models import *
 
 # Create your views here.
 def myHome(req):
-    return render(req,'home.html')
+    context={}
+    myCategory=allCategory(req)
+    context['allCategory']=myCategory
+    return render(req,'home.html',context)
 
 def getCategory(req,cate):
         context={}
@@ -14,4 +17,9 @@ def getCategory(req,cate):
         context['projects']=Projects.objects.filter(category=cate)
         
         return render(req,'category.html',context)
+
+def allCategory(req):
+      context={}
+      all_category=Category.objects.all()
+      return all_category
     

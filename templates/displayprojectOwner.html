@@ -1,0 +1,65 @@
+{%extends 'parent.html' %}
+
+{%block content%}
+<div class="container bg-secondary p-4 my-4">
+    <h1>
+        Project: {{setProject.title}} 
+        {% if not deleteProject %}
+            <button class="btn btn-primary active" style="margin-left: 70%;">Delete project</button>
+        {% endif %}
+        
+    </h1>
+    <div class="container basic-project-info" style="background-color: white;padding: 10px;border-radius: 5px;padding: 25px; height: 500;">    
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            name : {{setProject.title}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            owner-project : {{setOwnerProject.email}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            details : {{setProject.details}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            target : {{setProject.category}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            start-date : {{setProject.start_date}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            end-date : {{setProject.end_date}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            total-rate : {{setProject.total_rate}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            report-counter : {{setProject.report_count}} 
+        </p>
+        <p class="table" style="background-color: rgb(174, 192, 195);border: 1px solid gray; padding: 10px;">
+            Total Donate : {{setDonation}}
+        </p>
+        
+    </div>
+    <div class="container " style="margin-top: 20px;background-color: white;padding: 10px;border-radius: 5px;padding: 25px; ">
+        <h2>Comments</h2>
+        <div class="" style="border: 1px solid gainsboro; padding: 20px;">
+            {%for comment in setComment%}
+                <hr>
+                <span class="px-4">{{comment.user_id}} </span>
+                <input  type="checkbox" name="" {% if comment.report_comment %}checked{% endif %}>
+                <br>
+                <p class="px-4">{{comment.comment_body}}</p>
+                
+                <hr>
+            {%endfor%}
+        </div>
+    </div>
+    <div class="container" style="margin-top: 20px;background-color: white;padding: 10px;border-radius: 5px;padding: 25px; ">
+        this is slider image
+    </div>
+    <div class="container" style="margin-top: 20px;background-color: white;padding: 10px;border-radius: 5px;padding: 25px; ">
+        4 project with same tags
+    </div>
+</div>
+
+
+{%endblock%}
