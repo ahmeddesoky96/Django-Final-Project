@@ -2,8 +2,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 
-# Create your models here.
 class MyUser(models.Model):
+
 
     id=models.AutoField(primary_key=True)
     first_name=models.CharField(max_length=20)
@@ -31,4 +31,4 @@ class MyUser(models.Model):
     country= models.CharField()
 
     def __str__(self) -> str:
-        return self.first_name+" "+self.last_name
+        return self.first_name+" "+self.last_name        

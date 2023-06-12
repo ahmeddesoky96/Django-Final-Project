@@ -72,6 +72,9 @@ TEMPLATES = [
     },
 ]
 
+
+
+
 WSGI_APPLICATION = 'crowd_funding.wsgi.application'
 
 
@@ -80,17 +83,17 @@ WSGI_APPLICATION = 'crowd_funding.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'crowdfund',
-        'USER':'postgres',
-        'PASSWORD':'123',
-        'HOST':'127.0.0.1',
-        'PORT':5432
+        'NAME': 'crowdfund',
+        'USER': 'crowdfund',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+LOGIN_REDIRECT_URL = 'home'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
