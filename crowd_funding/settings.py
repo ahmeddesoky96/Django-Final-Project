@@ -74,20 +74,40 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'crowd_funding.wsgi.application'
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+LOGIN_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'home.backends.EmailBackend',
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         # 'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':'crowdfund',
+#         'USER':'postgres',
+#         'PASSWORD':'Mo#Selim',
+#         'HOST':'127.0.0.1',
+#         'PORT':5432
+#     }
+# }
+
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'crowdfund',
-        'USER':'postgres',
-        'PASSWORD':'Mo#Selim',
-        'HOST':'127.0.0.1',
-        'PORT':5432
+        'NAME': 'crowdfund',
+        'USER': 'crowdfund',
+        'PASSWORD': '12345',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
