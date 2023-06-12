@@ -19,10 +19,15 @@
       </div>
 
       <!-- Category -->
-      <!-- <div class="mb-3">
-        <label for="Category" class="form-label">Category</label>
-        <input type="text" name="category" class="form-control" id="Category" aria-describedby="emailHelp">
-      </div> -->
+      <div class="mb-3">
+          <label for="Details" class="form-label">Category</label>
+          <select name="get_category" id="">
+            {%for category in allCategory%}
+              <option value={{category.name}}>{{category.name}}</option>
+            {%endfor%}
+          </select>
+          
+      </div>
 
       <!-- Target -->
       <div class="mb-3">
@@ -42,11 +47,11 @@
         <input type="date" name="end_date" class="form-control" id="End_date" aria-describedby="emailHelp">
       </div>
 
-      <!-- Total_rate
+      <!-- image -->
       <div class="mb-3">
-        <label for="Total_rate" class="form-label">Total Rate</label>
-        <input type="text" name="total_rate" class="form-control" id="Total_rate" aria-describedby="emailHelp">
-      </div> -->
+        <label for="Total_rate" class="form-label">Add image</label>
+        <input type="image" name="image" class="form-control" id="Total_rate" aria-describedby="emailHelp">
+      </div>
       
       
       <button type="submit" class="btn btn-primary">Create</button>

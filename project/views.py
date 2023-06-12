@@ -12,8 +12,10 @@ from django.db.models import Sum
 def createProject(req):
     # if('username' in req.session):
         context={}
+        allCategory=Category.objects.all()
+        context['allCategory']=allCategory
         if(req.method=='POST'):
-            myCategory = Category.objects.get(name='help')
+            myCategory = req.POST['get_category']
             myEmail = MyUser.objects.get(id=1)
             Projects.objects.create(title=req.POST['title'],details=req.POST['details'],category=myCategory,target=req.POST['target'],start_date=req.POST['start_date'],end_date=req.POST['end_date'],owner_id=myEmail,report_count=1)
             return HttpResponseRedirect('/')
@@ -104,8 +106,9 @@ def displayProject(req,id):
                 return HttpResponseRedirect('/project/display/{}'.format(int(id)))
         
         ########### check if u are owner of project or just user
-        if(req.session['username']=='mohaamed@gmail.com'):
+        if(req.session['username']=='noor@gmail.com'):
             project = Projects.objects.get(id=id)
+            ############check if total donta more tha25% from target or can delete
             total_donations = Donation.objects.filter(project=id).aggregate(Sum('donate_amount'))['donate_amount__sum'] or 0
             deleteProject = True if total_donations < 0.25 * project.target else False
             context['deleteProject']=deleteProject
@@ -115,4 +118,9 @@ def displayProject(req,id):
         #######################################################
         
               
-
+def deleteProject(req,ID):
+    if('username' in req.session):
+        Projects.objects.filter(id=ID).delete()
+        return HttpResponseRedirect('/')
+    else:
+         return HttpResponseRedirect('/')
