@@ -25,7 +25,7 @@ class MyUser(models.Model):
             )
         ]
     )
-    image = models.CharField()
+    image = models.ImageField(upload_to='static/profile_pictures')
     birth_date= models.DateField()
     facebook_profile= models.CharField()
     country= models.CharField()

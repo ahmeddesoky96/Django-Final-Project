@@ -12,7 +12,18 @@
   </head>
   <body>
     <div class="container bg-secondary">
-      <h1>this is header</h1>
+      <h1>this is search</h1>
+      <form class="d-flex" role="search" method="POST">
+        {% csrf_token %}
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
     <br /><br /><br /><br />
 <div class="container bg-secondary my-4 p-4" style="color: white; border-radius: 10px">
@@ -50,9 +61,14 @@
 
 </div>
     <br /><br /><br />
-    <div class="container bg-info my-4 p-4" style="color: white; border-radius: 10px">
+    <div class="container bg-success">
       <h1>Pick Category</h1>
+      {%for category in allCategory%}
+          <a href="{% url 'category' category.name %}" class="btn btn-primary">{{category.name}} category</a>         
+      {%endfor%}
+      
     </div>
+
     <br /><br /><br />
     <div class="container bg-info my-4 p-4" style="color: white; border-radius: 10px">
       <h1>the latest projects</h1>
@@ -86,10 +102,35 @@
     <br /><br /><br /><br />
     <div class="container bg-secondary">
       <h1>this is top 5 project entered by admin</h1>
+      <table width="100%" border="1" class="table">
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Date Created</th>
+          <th>Category</th>
+          <th>Owner</th>
+          <th>Target</th>
+          <th>Rate</th>
+          <th>Display</th>
+        </tr>
+        {%for project in admin_projects_selected%}
+        <tr>
+          <td>{{project.id}}</td>
+          <td>{{project.title}}</td>
+          <td>{{project.created_at}}</td>
+          <td>{{project.category}}</td>
+          <td>{{project.owner_id}}</td>
+          <td>{{project.target}}</td>
+          <td>{{project.total_rate}}</td>
+          <td>
+            <a href="#" class="btn btn-info"> View</a>
+          </td>
+        </tr>
+        {%endfor%}
+      </table>
     </div>
 
     <script src="{% static 'bootstrap-5.3.0-dist/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'bootstrap-5.3.0-dist/js/code.jquery.com_jquery-3.7.0.min.js' %}"></script>
 
   </body>
 </html>

@@ -5,6 +5,8 @@ from .views import *
 urlpatterns = [
     
     path('create', createProject,name='createProject'),
-    path('<int:id>', get_similar_project,name='get_similar_project'),
+    path('display/<int:id>', displayProject,name='displayProject'),
+    path('delete/<int:ID>', deleteProject,name='deleteProject'),
+    
     
 ]

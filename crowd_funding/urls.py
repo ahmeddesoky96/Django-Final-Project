@@ -10,4 +10,5 @@ urlpatterns = [
     path("project/",include('project.urls')),
     #for home urls
     path("",include('home.urls')),
+    path("user/",include('user_profile.urls')),
 ]
