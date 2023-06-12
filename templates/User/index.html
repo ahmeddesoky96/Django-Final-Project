@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crowd Funding</title>
+
+    <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  </head>
+
+  <body>
+    <!--  Body Wrapper -->
+    <header class="app-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item d-block d-xl-none">
+            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+              <i class="ti ti-menu-2"></i>
+            </a>
+          </li>
+
+        </ul>
+        <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+          <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+            <a href="" target="_blank" class="btn btn-primary">
+              Geast
+
+              </a>
+            <li class="nav-item dropdown">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="{%static 'images/profile/user-1.jpg' %}" alt="" width="35" height="35" class="rounded-circle">
+              </a>
+              <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                <div class="message-body">
+                  <a href="" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-user fs-6"></i>
+                    <p class="mb-0 fs-3">My Profile</p>
+                  </a>
+                  <a href="" class="d-flex align-items-center gap-2 dropdown-item">
+                    <i class="ti ti-mail fs-6"></i>
+                    <p class="mb-0 fs-3">My course</p>
+                  </a>
+                  <a href="{%url 'UserInfo'%}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div
+      class="page-wrapper"
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin6"
+      data-sidebartype="full"
+      data-sidebar-position="fixed"
+      data-header-position="fixed"
+    >
+      <!-- slider starts  -->
+      <div
+        id="carouselExampleAutoplaying"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <!-- put your data here to let the slider works -->
+          <div class="carousel-item active">
+            <img src="..." class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- slider endss  -->
+      <!-- Sidebar Start -->
+      <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div>
+          <div
+            class="brand-logo d-flex align-items-center justify-content-between"
+          >
+            <a href="./index.html" class="text-nowrap logo-img">
+              <span class="fw-bold" style="font-size: 2em">Crowd Funding</span>
+            </a>
+            <div
+              class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+              id="sidebarCollapse"
+            >
+              <i class="ti ti-x fs-8"></i>
+            </div>
+          </div>
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./index.html"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-article"></i>
+                  </span>
+                  <span class="hide-menu">Home</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./projects.html"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-cards"></i>
+                  </span>
+                  <span class="hide-menu">Projects</span>
+                </a>
+              </li>
+
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">AUTH</span>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./authentication-login.html"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-login"></i>
+                  </span>
+                  <span class="hide-menu">Login</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link"
+                  href="./authentication-register.html"
+                  aria-expanded="false"
+                >
+                  <span>
+                    <i class="ti ti-user-plus"></i>
+                  </span>
+                  <span class="hide-menu">Register</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      <!--  Sidebar End -->
+      <!--  Main wrapper -->
+      <div class="body-wrapper">
+        <!-- Project Details Starts -->
+        <div class="row container mt-5">
+          <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 shadow">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Project #Name#</h5>
+                <div class="table-responsive">
+                  <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                      <tr>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">Name</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            Project Owner
+                          </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">Details</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">Target</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            Start date
+                          </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            End date
+                          </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            Total rate
+                          </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            Report counter
+                          </h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0 text-primary">
+                            Total donates
+                          </h6>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <h6>Write Here</h6>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <!-- give donate starts -->
+                  <form>
+                    <div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        min="1000"
+                        step="1000"
+                      />
+                      <div id="emailHelp" class="form-text">Give Donate</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Donate
+                    </button>
+                  </form>
+                  <!-- give donate ends -->
+                  <!-- rate starts  -->
+                  <select
+                    class="form-select mt-4"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="3">Four</option>
+                    <option value="3">Five</option>
+                  </select>
+                  <!-- rate ends  -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Project Details Ends -->
+        <!-- Comments Starts -->
+        <div class="row container mt-2">
+          <div class="col-lg-12 d-flex align-items-stretch">
+            <div class="card w-100 shadow">
+              <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Comments</h5>
+                <h6>User Name</h6>
+              </div>
+            </div>
+          </div>
+          <!-- give comment starts -->
+          <form>
+            <div>
+              <input type="text" class="form-control" />
+              <div id="emailHelp" class="form-text">Add Comment</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Comment</button>
+          </form>
+          <!-- give comment ends -->
+        </div>
+
+        <!-- Comments Ends -->
+      </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/sidebarmenu.js"></script>
+    <script src="../assets/js/app.min.js"></script>
+    <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+# register html
+# {% extends 'base.html' %}
+
+# {% block content %}
+#   <h1>Register</h1>
+#   <form method="post">
+#     {% csrf_token %}
+#     {{ form.as_p }}
+#     {% if form.errors %}
+#       <ul class="errorlist">
+#       {% for field in form %}
+#         {% for error in field.errors %}
+#           <li>{{ error }}</li>
+#         {% endfor %}
+#       {% endfor %}
+#       </ul>
+#     {% endif %}
+#     <button type="submit">Register</button>
+#   </form>
+# {% endblock %}
+
+### view
+# from django.shortcuts import render, redirect
+# from django.contrib import messages
+# from myapp.forms import UserForm
+# from myapp.models import MyUser
+
+# def register_user(request):
+#     if request.method == 'POST':
+#         form = UserForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.save()
+#             messages.success(request, 'You have registered successfully!')
+#             return redirect('register_user')
+#     else:
+#         form = UserForm()
+#     return render(request, 'register_user.html', {'form': form})
+
+### form
+# from django import forms
+# from django.core.exceptions import ValidationError
+# from myapp.models import MyUser
+
+# class UserForm(forms.ModelForm):
+#     confirm_password = forms.CharField(max_length=20, widget=forms.PasswordInput())
+
+#     class Meta:
+#         model = MyUser
+#         fields = ['first_name', 'last_name', 'email', 'password', 'confirm_password', 'phone_number', 'image', 'birth_date', 'facebook_profile', 'country']
+#         widgets = {
+#             'password': forms.PasswordInput(),
+#         }
+
+#     def clean(self):
+#         cleaned_data = super().clean()
+#         password = cleaned_data.get('password')
+#         confirm_password = cleaned_data.get('confirm_password')
+#         if password and confirm_password and password != confirm_password:
+#             raise ValidationError('Passwords do not match.')

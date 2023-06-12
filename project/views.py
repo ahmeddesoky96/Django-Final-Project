@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse ,HttpResponseRedirect
 from project.models import *
 from user_profile.models import *
@@ -10,7 +10,7 @@ from user_profile.models import *
 ### create project ###
 #add
 def createProject(req):
-    # if('username' in req.session):
+    if('username' in req.session):
         context={}
         allCategory=Category.objects.all()
         context['allCategory']=allCategory
@@ -25,6 +25,7 @@ def createProject(req):
                 Image.objects.create(project=new_proj,picture = req.FILES['image'])
             return HttpResponseRedirect('/')
         return render(req,'createProject.html',context)
+    return redirect("/Registeration")
        #id,title,details,category,target,start_date,end_date,owener_email,total_rate,repor_count
 
         
@@ -62,6 +63,7 @@ def image_slider(id):
 
 #### display project
 def displayProject(req,id):
+    if('username' in req.session):
         # req.session.clear()
         context={}
     ######## set the data into context to send it for display page
@@ -132,7 +134,7 @@ def displayProject(req,id):
             if('rateValue' in req.POST):
                 
             # myCategory = Category.objects.get(name='help')
-                userID = MyUser.objects.get(email=req.session['username'])
+                userID = MyUser.objects.get(email=req.session['user_email'])
                 print(userID)
                 if(req.POST['rateValue']):  ####### check donate not empty
                     Rating.objects.create(project=getProject,user_id=getUserID,rate=req.POST['rateValue'])
@@ -142,14 +144,14 @@ def displayProject(req,id):
             ##### get comment from user
             if('commentUser' in req.POST):
                 projectID=Projects.objects.get(id=id)
-                userID = MyUser.objects.get(email=req.session['username'])
+                userID = MyUser.objects.get(email=req.session['user_email'])
                 if(req.POST['commentUser']): ####### check comment not empty
                     Comment.objects.create(project=projectID,user_id=userID,comment_body=req.POST['commentUser'])
             #############################        
                 return HttpResponseRedirect('/project/display/{}'.format(int(id)))
         
         ########### check if u are owner of project or just user
-        if(req.session['username']=='s@s.com'):
+        if(req.session['user_email']=='s@s.com'):
             project = Projects.objects.get(id=id)
             ############check if total donta more tha25% from target or can delete
             total_donations = Donation.objects.filter(project=id).aggregate(Sum('donate_amount'))['donate_amount__sum'] or 0
@@ -159,11 +161,12 @@ def displayProject(req,id):
         else:
             return render(req,'displayprojectUser.html',context)
         #######################################################
-        
+    else:
+        return redirect("/Registeration")
               
 def deleteProject(req,ID):
     if('username' in req.session):
         Projects.objects.filter(id=ID).delete()
         return HttpResponseRedirect('/')
     else:
-         return HttpResponseRedirect('/')
+         return HttpResponseRedirect('/Registeration')
