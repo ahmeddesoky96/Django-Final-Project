@@ -123,7 +123,7 @@
         </div>
     </div>
     <div class="container" style="margin-top: 20px;background-color: white;padding: 10px;border-radius: 5px;padding: 25px; ">
-        this is slider image
+        Project Images
         <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner w-100">
               {%for image in images%} 
@@ -183,8 +183,9 @@
                         <td>{{project.target}}</td>
                         <td>{{project.total_rate}}</td>
                         <td>{{project.owner_id}}</td>
-                        <td><button class="btn btn-primary">Display</button></td>
-                        
+                        <td>
+                        <a class="btn btn-info text-dark " href="{%url 'displayProject' project.id %}">View</a>
+                        </td>
                     </tr>
                 {%endfor%}
             </table>
