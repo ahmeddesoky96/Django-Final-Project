@@ -85,4 +85,12 @@ def get_all_donations(id):
         all_project.append(project_dict)
     return all_project
     
-    
+def deleteuser(req):
+    if('username' in req.session):
+        Projects.objects.filter(owner_id=req.session['user_id']).delete()
+        Tag.objects.filter(project=None).delete()
+        MyUser.objects.filter(id=req.session['user_id']).delete()
+        req.session.clear()
+        return HttpResponseRedirect('/Registeration')
+    else:
+         return HttpResponseRedirect('/Registeration')    

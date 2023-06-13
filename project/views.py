@@ -27,7 +27,7 @@ def createProject(req):
                         return render(req,'home/search.html',context)
         ############################################
             myCategory = Category.objects.get(name=req.POST['get_category'])
-            myEmail = MyUser.objects.get(id=1)
+            myEmail = MyUser.objects.get(id=req.session['user_id'])
             startDateObj = datetime.datetime.strptime(req.POST['start_date'], '%Y-%m-%d')
             endDateObj = datetime.datetime.strptime(req.POST['end_date'], '%Y-%m-%d')
             if endDateObj < startDateObj:

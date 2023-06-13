@@ -10,5 +10,6 @@ urlpatterns = [
     path('', UserInfo, name='UserInfo'),
     path('edit',  EditUserInfo, name='Edituserinfo'),
     path('edit', EditUser, name='EditUser'),
+    path('deleteasdasdasdsad', deleteuser, name='deleteuser'),
     
 ]
