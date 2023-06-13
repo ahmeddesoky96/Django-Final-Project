@@ -1,3 +1,3 @@
 # Django-Final-Project
 Final project for django 
-the final project on ((desoky-final)) branch , which had all website app 
+the final project on ((desoky-the-end )) branch , which had all website app 
