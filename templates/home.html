@@ -51,10 +51,10 @@
 
 </div>
     <br /><br /><br />
-    <div class="container bg-success">
+    <div class="container bg-secondary p-4" style="border-radius: 10px;">
       <h1>Pick Category</h1>
       {%for category in allCategory%}
-          <a href="{% url 'category' category.name %}" class="btn btn-primary">{{category.name}} category</a>         
+          <a href="{% url 'category' category.name %}" class="btn btn-info text-dark">{{category.name}} category</a>         
       {%endfor%}
       
     </div>

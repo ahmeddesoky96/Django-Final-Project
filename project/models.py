@@ -53,8 +53,8 @@ class Tag(models.Model):
 class Image(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='static/project_pictures')
-    def __str__(self):
-        return str(self.picture)
+    # def __str__(self):
+    #     return str(self.picture)
     
 class Donation(models.Model):
     project = models.ForeignKey(Projects, on_delete=models.CASCADE)

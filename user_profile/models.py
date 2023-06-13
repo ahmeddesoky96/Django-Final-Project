@@ -26,9 +26,10 @@ class MyUser(models.Model):
         ]
     )
     image = models.ImageField(upload_to='static/profile_pictures')
-    birth_date= models.DateField()
-    facebook_profile= models.CharField()
-    country= models.CharField()
+    
+    birth_date= models.DateField(default='1990-12-12')
+    facebook_profile= models.CharField(default='https://www.facebook.com')
+    country= models.CharField(default='Egypt')
 
     def __str__(self) -> str:
         return self.first_name+" "+self.last_name

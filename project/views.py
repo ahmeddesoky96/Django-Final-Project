@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse ,HttpResponseRedirect
 from project.models import *
 from user_profile.models import *
+from home.views import *
+import datetime
 
 # Create your views here.
 
@@ -10,23 +12,41 @@ from user_profile.models import *
 ### create project ###
 #add
 def createProject(req):
-    # if('username' in req.session):
+    if('username' in req.session):
         context={}
         allCategory=Category.objects.all()
         context['allCategory']=allCategory
+        
         if(req.method=='POST'):
+            ####### search bar 
+            if 'search' in req.POST:
+                    if req.POST['search']:
+                        search_result = searchBar(req)
+                        context = {}
+                        context['search_result'] = search_result
+                        return render(req,'home/search.html',context)
+        ############################################
             myCategory = Category.objects.get(name=req.POST['get_category'])
             myEmail = MyUser.objects.get(id=1)
+            startDateObj = datetime.datetime.strptime(req.POST['start_date'], '%Y-%m-%d')
+            endDateObj = datetime.datetime.strptime(req.POST['end_date'], '%Y-%m-%d')
+            if endDateObj < startDateObj:
+                context['end_err_msg']="End date must be after start date. Please enter a valid end date."
+                return render(req,'createProject.html',context)
             new_proj = Projects.objects.create(title=req.POST['title'],details=req.POST['details'],category=myCategory,target=req.POST['target'],start_date=req.POST['start_date'],end_date=req.POST['end_date'],owner_id=myEmail,report_count=1)
             # new_proj = Projects.objects.get(title=req.POST['title'])
             # for image in req.FILES.getlist('image'):
             # print(req.FILES['image'])
+            if 'tag' in req.POST:
+                Tag.objects.create(project=new_proj,tag_name = req.POST['tag'].lower())
             if 'image' in req.FILES:
-                Image.objects.create(project=new_proj,picture = req.FILES['image'])
-            return HttpResponseRedirect('/')
+                for image in req.FILES.getlist('image'):
+            # print(req.FILES['image'])
+                    Image.objects.create(project=new_proj,picture = image)
+            return HttpResponseRedirect('/user')
         return render(req,'createProject.html',context)
-       #id,title,details,category,target,start_date,end_date,owener_email,total_rate,repor_count
-
+    else:
+        return redirect("/Registeration")
         
 
 
@@ -62,11 +82,20 @@ def image_slider(id):
 
 #### display project
 def displayProject(req,id):
+    if('username' in req.session):
         # req.session.clear()
         context={}
     ######## set the data into context to send it for display page
-        req.session['username']='s@s.com'
         
+        ####### search bar 
+        if 'search' in req.POST:
+                if req.POST['search']:
+                    search_result = searchBar(req)
+                    context = {}
+                    context['search_result'] = search_result
+                    return render(req,'home/search.html',context)
+        ############################################
+
         similar_projects = get_similar_project(id)
         getProject = Projects.objects.get(id=id)
         images = image_slider(id)
@@ -121,7 +150,7 @@ def displayProject(req,id):
             if('donateUser' in req.POST):
                 projectID=Projects.objects.get(id=id)
             # myCategory = Category.objects.get(name='help')
-                userID = MyUser.objects.get(email=req.session['username'])
+                userID = MyUser.objects.get(email=req.session['user_email'])
                 if(req.POST['donateUser']):  ####### check donate not empty
                     Donation.objects.create(project=projectID,user_id=userID,donate_amount=req.POST['donateUser'])
                 return HttpResponseRedirect('/project/display/{}'.format(int(id)))
@@ -132,7 +161,7 @@ def displayProject(req,id):
             if('rateValue' in req.POST):
                 
             # myCategory = Category.objects.get(name='help')
-                userID = MyUser.objects.get(email=req.session['username'])
+                userID = MyUser.objects.get(email=req.session['user_email'])
                 print(userID)
                 if(req.POST['rateValue']):  ####### check donate not empty
                     Rating.objects.create(project=getProject,user_id=getUserID,rate=req.POST['rateValue'])
@@ -142,14 +171,14 @@ def displayProject(req,id):
             ##### get comment from user
             if('commentUser' in req.POST):
                 projectID=Projects.objects.get(id=id)
-                userID = MyUser.objects.get(email=req.session['username'])
+                userID = MyUser.objects.get(email=req.session['user_email'])
                 if(req.POST['commentUser']): ####### check comment not empty
                     Comment.objects.create(project=projectID,user_id=userID,comment_body=req.POST['commentUser'])
             #############################        
                 return HttpResponseRedirect('/project/display/{}'.format(int(id)))
         
         ########### check if u are owner of project or just user
-        if(req.session['username']=='s@s.com'):
+        if(getOwnerProject.email==req.session['user_email']):
             project = Projects.objects.get(id=id)
             ############check if total donta more tha25% from target or can delete
             total_donations = Donation.objects.filter(project=id).aggregate(Sum('donate_amount'))['donate_amount__sum'] or 0
@@ -159,6 +188,8 @@ def displayProject(req,id):
         else:
             return render(req,'displayprojectUser.html',context)
         #######################################################
+    else:
+        return redirect("/Registeration")
         
               
 def deleteProject(req,ID):
@@ -166,10 +197,19 @@ def deleteProject(req,ID):
         Projects.objects.filter(id=ID).delete()
         return HttpResponseRedirect('/')
     else:
-         return HttpResponseRedirect('/')
+         return HttpResponseRedirect('/Registeration')
     
 def listAllProject(req):
-    context={}
-    allProject=Projects.objects.all()
-    context['allProject']=allProject
-    return render(req,'projectContainer.html',context)
+    if('username' in req.session):
+        if 'search' in req.POST:
+                if req.POST['search']:
+                    search_result = searchBar(req)
+                    context = {}
+                    context['search_result'] = search_result
+                    return render(req,'home/search.html',context)
+        context={}
+        allProject=Projects.objects.all()
+        context['allProject']=allProject
+        return render(req,'projectContainer.html',context)
+    else:
+        return HttpResponseRedirect('/Registeration')

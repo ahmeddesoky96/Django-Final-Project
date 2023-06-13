@@ -93,27 +93,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link  mx-5" href="{%url 'myHome'  %}">Projects </a>
+                <a class="nav-link  mx-5" href="{%url 'allprojects'  %}">Projects </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link  mx-5" href="{%url 'UserInfo'  %}">myProfile</a>
               </li>
               
-              <li class="nav-item">
-                <a class="nav-link   mx-5" href="#">Register</a>
-              </li>
+             
             </ul>
-            <form class="d-flex" role="search" method="POST" style="padding: 2%;">
-              {% csrf_token %}
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                name="search"
-              />
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
           <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
@@ -126,7 +114,7 @@
           <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="" target="_blank" class="btn btn-primary">
-                Geast
+                {{request.session.username}}
 
                 </a>
               <li class="nav-item dropdown">
