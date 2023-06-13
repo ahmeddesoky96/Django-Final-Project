@@ -111,7 +111,9 @@ def searchBar(request):
 def Registeration(req):
     if( 'username' not in req.session):
         context = {}
+        
         if req.method == "POST":
+            
             first_name = req.POST["first_name"]
             last_name = req.POST["last_name"]
             email = req.POST["email"]
