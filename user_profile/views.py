@@ -76,7 +76,7 @@ def get_all_donations(id):
     donations= Donation.objects.filter(user_id=id)
     all_project = []
     for donate in donations:
-        project = Projects.objects.get(id=donate.id)
+        project = Projects.objects.get(id=donate.project.id)
         project_dict = {
             'id': project.id,
             'project': project.title,
